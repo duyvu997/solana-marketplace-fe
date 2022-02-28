@@ -11,13 +11,6 @@ export const CurrentUserBadge = (props: {
   showAddress?: boolean;
   iconSize?: number;
 }) => {
-  const { wallet, publicKey } = useWallet();
-  const { account } = useNativeAccount();
-
-  if (!wallet || !publicKey) {
-    return null;
-  }
-
   const iconStyle: React.CSSProperties = props.showAddress
     ? {
         marginLeft: '0.5rem',
@@ -40,7 +33,14 @@ export const CurrentUserBadge = (props: {
   const walletKeyStyle: React.CSSProperties = props.showAddress
     ? baseWalletKey
     : { ...baseWalletKey, paddingLeft: 0 };
+  
+  const { wallet, publicKey } = useWallet();
+  const { account } = useNativeAccount();
 
+  if (!wallet || !publicKey) {
+    return null;
+  }
+  
   return (
     <div className="wallet-wrapper">
       {props.showBalance && (

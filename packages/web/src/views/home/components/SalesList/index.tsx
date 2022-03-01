@@ -10,7 +10,7 @@ import { HowToBuyModal } from '../../../../components/HowToBuyModal';
 
 import { useAuctionsList } from './hooks/useAuctionsList';
 import { AuctionRenderCard } from '../../../../components/AuctionRenderCard';
-
+import { sample } from './sample';
 const { TabPane } = Tabs;
 const { Content } = Layout;
 
@@ -26,7 +26,7 @@ export const SalesListView = () => {
   const [activeKey, setActiveKey] = useState(LiveAuctionViewState.All);
   const { isLoading } = useMeta();
   const { connected } = useWallet();
-  const { auctions, hasResaleAuctions } = useAuctionsList(activeKey);
+  const auctions = sample;
 
   return (
     <>
@@ -34,7 +34,7 @@ export const SalesListView = () => {
         src="/main-banner.svg"
         headingText="The amazing world of Metaplex."
         subHeadingText="Buy exclusive Metaplex NFTs."
-        actionComponent={<HowToBuyModal buttonClassName="secondary-btn" />}
+        // actionComponent={<HowToBuyModal buttonClassName="secondary-btn" />}
         useBannerBg
       />
       <Layout>
@@ -48,41 +48,22 @@ export const SalesListView = () => {
                 <TabPane
                   tab={
                     <>
-                      <span className="live"></span> Lived
+                      <span className="live"></span> Latest Collections
                     </>
                   }
                   key={LiveAuctionViewState.All}
                 ></TabPane>
-                {hasResaleAuctions && (
-                  <TabPane
-                    tab="Secondary Marketplace"
-                    key={LiveAuctionViewState.Resale}
-                  ></TabPane>
-                )}
-                <TabPane tab="Ended" key={LiveAuctionViewState.Ended}></TabPane>
-                {connected && (
-                  <TabPane
-                    tab="Participated"
-                    key={LiveAuctionViewState.Participated}
-                  ></TabPane>
-                )}
-                {connected && (
-                  <TabPane
-                    tab="My Live Auctions"
-                    key={LiveAuctionViewState.Own}
-                  ></TabPane>
-                )}
               </Tabs>
             </Row>
             <Row>
               <div className="artwork-grid">
-                {isLoading &&
-                  [...Array(10)].map((_, idx) => <CardLoader key={idx} />)}
+                {/* {isLoading &&
+                  [...Array(10)].map((_, idx) => <CardLoader key={idx} />)} */}
                 {!isLoading &&
                   auctions.map(auction => (
                     <Link
-                      key={auction.auction.pubkey}
-                      to={`/auction/${auction.auction.pubkey}`}
+                      key={auction.mint}
+                      to={`/collections/${auction.mint}`}
                     >
                       <AuctionRenderCard auctionView={auction} />
                     </Link>

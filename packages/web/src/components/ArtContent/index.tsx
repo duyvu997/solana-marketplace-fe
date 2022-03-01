@@ -289,18 +289,6 @@ export const ArtContent = ({
     setCategoryState(category);
   }, [category]);
 
-  useEffect(() => {
-    if (pubkey && data) {
-      setUriState(data.image);
-      setAnimationURLState(data.animation_url);
-    }
-
-    if (pubkey && data?.properties) {
-      setFilesState(data.properties.files);
-      setCategoryState(data.properties.category);
-    }
-  }, [pubkey, data])
-
   const animationUrlExt = new URLSearchParams(
     getLast((animationURLState || '').split('?')),
   ).get('ext');

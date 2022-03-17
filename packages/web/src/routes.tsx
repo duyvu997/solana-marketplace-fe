@@ -1,10 +1,8 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { Providers } from './providers';
+import { HomeView, AuctionView } from './views';
 import { AdminView } from './views/admin';
-import { AuctionView } from './views/auction';
-import { HomeView } from './views/home';
-
 
 export function Routes() {
   return (
@@ -12,13 +10,15 @@ export function Routes() {
       <HashRouter basename={'/'}>
         <Providers>
           <Switch>
-            <Route path="/" component={() => <HomeView />} />
-            <Route exact path="/admin" component={() => <AdminView />} />
-            <Route
-              // exact
-              path="/collections/:id"
-              component={() => <AuctionView />}
-            />
+            <Route exact path="/">
+              <HomeView />
+            </Route>
+            <Route path="/admin">
+              <AdminView />
+            </Route>
+            <Route path="/collections/:id">
+              <AuctionView />
+            </Route>
           </Switch>
         </Providers>
       </HashRouter>

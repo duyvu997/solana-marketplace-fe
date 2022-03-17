@@ -107,5 +107,12 @@
     "react": "*",
     "react-dom": "*"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "volta": {
+    "node": "16.14.1"
+  },
+   "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.13"
+  }
 }

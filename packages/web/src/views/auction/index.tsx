@@ -81,6 +81,7 @@ export const AuctionItem = ({
 };
 
 export const AuctionView = () => {
+
   const { width } = useWindowDimensions();
   const { id } = useParams<{ id: string }>();
   const { endpoint } = useConnectionConfig();
@@ -93,7 +94,7 @@ export const AuctionView = () => {
   useEffect(() => {
     pullAuctionPage(id);
   }, []);
-  console.log(12121)
+
   let edition = '';
   if (art.type === ArtType.NFT) {
     edition = 'Unique';

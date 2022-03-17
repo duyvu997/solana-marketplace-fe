@@ -4,7 +4,6 @@ import DetailModal from './detail';
 
 export const CollectionItem = ({ item }: any) => {
   const { metadataOnchain, metadataExternal, editionData } = item;
-
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -32,9 +31,11 @@ export const CollectionItem = ({ item }: any) => {
       <Button onClick={() => setShowModal(true)} style={{ maxHeight: '30px' }}>
         Buy
       </Button>
-      <DetailModal onClose={() => setShowModal(false)} show={showModal}>
-        Hello from the modal!
-      </DetailModal>
+      <DetailModal
+        onClose={() => setShowModal(false)}
+        show={showModal}
+        item={item}
+      />
     </>
   );
 };

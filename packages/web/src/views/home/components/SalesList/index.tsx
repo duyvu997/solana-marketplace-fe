@@ -62,7 +62,42 @@ export const SalesListView = () => {
                   auctions.map(auction => (
                     <Link
                       key={auction.mint}
-                      to={`/collections/${auction.mint}`}
+                      to={`/collections/${auction.metadataExternal.name}`}
+                    >
+                      <AuctionRenderCard auctionView={auction} />
+                    </Link>
+                  ))}
+              </div>
+            </Row>
+          </Col>
+        </Content>
+
+         <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
+          <Col style={{ width: '100%', marginTop: 32 }}>
+            <Row>
+              <Tabs
+                activeKey={activeKey}
+                onTabClick={key => setActiveKey(key as LiveAuctionViewState)}
+              >
+                <TabPane
+                  tab={
+                    <>
+                      <span className="live"></span> Best Collections
+                    </>
+                  }
+                  key={LiveAuctionViewState.All}
+                ></TabPane>
+              </Tabs>
+            </Row>
+            <Row>
+              <div className="artwork-grid">
+                {/* {isLoading &&
+                  [...Array(10)].map((_, idx) => <CardLoader key={idx} />)} */}
+                {!isLoading &&
+                  auctions.map(auction => (
+                    <Link
+                      key={auction.mint}
+                      to={`/collections/${auction.metadataExternal.name}`}
                     >
                       <AuctionRenderCard auctionView={auction} />
                     </Link>
